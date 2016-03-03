@@ -1,0 +1,35 @@
+{
+  "name": "ContactManager",
+  "description": "This is a simple contact manager.",
+  "main": "index.js",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "Contact",
+    "Manager"
+  ],
+  "authors": [
+    "Grinding Balls"
+  ],
+  "license": "MIT",
+  "homepage": "http://localhost",
+  "private": true,
+  "dependencies": {
+    "handlebars": "^4.0.5",
+    "jquery": "^2.2.1",
+    "underscore": "^1.8.3",
+    "backbone": "^1.2.3",
+    "bootstrap": "^3.3.6",
+    "require": "http://requirejs.org/docs/release/2.1.22/minified/require.js",
+    "font-awesome": "fontawesome#^4.5.0"
+  },
+  "install": {
+    "path": {
+      "js": "public/js/lib",
+      "css": "public/css/lib",
+      "less": "public/less/lib",
+      "scss": "public/scss/lib"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "contacts-manager",
+  "version": "1.0.0",
+  "description": "This is a contacts manager.",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Contacts",
+    "Manager"
+  ],
+  "author": "Grinding Balls",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "handlebars": "^4.0.5"
+  }
+}

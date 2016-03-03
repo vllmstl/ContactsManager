@@ -1,0 +1,57 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+.footer-sticky-container {
+  margin-bottom: 50px;
+}
+.footer-sticky {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  line-height: 50px;
+  background: #efefef;
+}
+.mixin-1 {
+  border-radius: 7px;
+  box-shadow: 0px 4px 0px #337ab7;
+}
+.nav-item {
+  padding: 0 0 10px 0;
+}
+.nav-item li {
+  padding: 5px;
+  transition: box-shadow 1s;
+  box-shadow: 0px 0px 0px #ffffff;
+}
+.nav-item li:hover {
+  border-radius: 7px;
+  box-shadow: 0px 4px 0px #337ab7;
+}
+.nav-item li a:hover {
+  text-decoration: none;
+  color: #337ab7;
+}
+.nav-item li a:focus {
+  text-decoration: none;
+  color: #337ab7;
+}
+.nav-item li.active {
+  border-radius: 7px;
+  box-shadow: 0px 4px 0px #337ab7;
+  color: #5bc0de;
+}
+.nav-item li.ignore {
+  box-shadow: 0px 0px 0px #ffffff;
+}
+.nav-item li.ignore:hover {
+  box-shadow: 0px 0px 0px #ffffff;
+}
+.marg-zero {
+  margin: 0;
+}
+p.message {
+  padding: 5px 10px 5px 10px;
+  border-bottom: 1px solid #efefef;
+  border-radius: 7px;
+}
