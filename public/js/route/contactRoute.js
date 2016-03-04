@@ -1,6 +1,6 @@
 define(['jquery', 'underscore', 'backbone', 'view/createView', 'view/homeView',
- 'view/tableView', 'collection/contactCollection', 'view/messageView', 'model/contact'],
- function ($, _, Backbone, CreateView, HomeView, TableView, ContactCollection, MessageView, Contact) {
+ 'view/tableView', 'collection/contactCollection', 'view/messageView', 'model/contact', 'view/tableMessageAndCreateView'],
+ function ($, _, Backbone, CreateView, HomeView, TableView, ContactCollection, MessageView, Contact, TableMessageAndCreateView) {
  	'use strict';
 
 	var Route = Backbone.Router.extend({
@@ -16,7 +16,8 @@ define(['jquery', 'underscore', 'backbone', 'view/createView', 'view/homeView',
 			'home': 'home',
 			'manage': 'manage',
 			'edit/:cid': 'edit',
-			'create': 'create'
+			'create': 'create',
+			'viewNedit': 'viewEdit'
 		},
 		home: function home() {
 			this._currentView = new HomeView();
@@ -67,6 +68,15 @@ define(['jquery', 'underscore', 'backbone', 'view/createView', 'view/homeView',
 			// 	//     });
 			// 	// }, 5000);
 			// }
+		},
+		viewEdit: function () {
+			var contact = new Contact({});
+			this._currentView = new TableMessageAndCreateView({
+				model: contact,
+				collection: this.contactCollection
+			});
+			this._currentView.render();
+			window.myview = this._currentView;
 		},
 		execute: function (callback, args, name) {
 			if (this._currentView) this._currentView.remove();
