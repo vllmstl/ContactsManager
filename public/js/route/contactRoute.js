@@ -10,6 +10,8 @@ define(['jquery', 'underscore', 'backbone', 'view/createView', 'view/homeView',
 			window.contact = Contact;
 			this.listenTo(this.contactCollection, 'add', this.showManage);
 			this.listenTo(this.contactCollection, 'change', this.showManage);
+			// should this event hook be placed? Advantages/Disadvantages?
+			this.listenTo(this.contactCollection, 'makeAndPushModel', this.makeAndPushModel);
 		},
 		routes: {
 			'': 'home',
@@ -68,6 +70,19 @@ define(['jquery', 'underscore', 'backbone', 'view/createView', 'view/homeView',
 			// 	//     });
 			// 	// }, 5000);
 			// }
+		},
+		makeAndPushModel: function (obj, collection) {
+			var contact = new Contact(obj.attrs, obj.options);
+			if (contact.isValid()) {
+				collection.push(contact);
+			} else {
+				// display messages
+				var messageView = new MessageView({
+					className: "bg-danger message", 
+					message: contact.validationError
+				});
+				messageView.render();
+			}
 		},
 		viewEdit: function () {
 			var contact = new Contact({});

@@ -12,12 +12,11 @@ require.config({
 });
 // requireText: 'lib/require/text'
 //, 'requireText!template/test.handlebars'
-require(['model/contact', 'jquery', 'collection/contactCollection',
- 'route/contactRoute', 'backbone'], 
- function (Contact, $, ContactCollection, ContactRoute, Backbone, ManageView) {
+require(['route/contactRoute', 'backbone'], 
+ function (ContactRoute, Backbone) {
 	'use strict';
 	
-	
+
 	var contactRoute = new ContactRoute();
 	Backbone.history.start();
 	// var $messages = $("#messages");	
