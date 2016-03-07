@@ -2,7 +2,7 @@ define(['jquery', 'backbone', 'templateCompiled/tableEntry.handlebars'], functio
 	'use strict';
 	var TableEntryView = Backbone.View.extend({
 		initialize: function () {
-			// this.listenTo(this.model, 'change', this.render);
+			this.listenTo(this.model, 'change', this.replace);
 		},
 		tagName: 'tr',
 		template: tableEntryTemp,
@@ -29,6 +29,10 @@ define(['jquery', 'backbone', 'templateCompiled/tableEntry.handlebars'], functio
 		},
 		editEntry: function () {
 			// this.model.set('fname', 'changed');
+		},
+		replace: function () {
+			this.$el.empty();
+			this.render();
 		}
 	});
 	return TableEntryView;

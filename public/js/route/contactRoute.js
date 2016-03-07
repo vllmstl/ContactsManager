@@ -6,12 +6,13 @@ define(['jquery', 'underscore', 'backbone', 'view/createView', 'view/homeView',
 	var Route = Backbone.Router.extend({
 		initialize: function () {
 			this.contactCollection = new ContactCollection();
-			window.contactCollection = this.contactCollection;
-			window.contact = Contact;
+			// window.contactCollection = this.contactCollection;
+			// window.contact = Contact;
 			this.listenTo(this.contactCollection, 'add', this.showManage);
 			this.listenTo(this.contactCollection, 'change', this.showManage);
 			// should this event hook be placed? Advantages/Disadvantages?
-			this.listenTo(this.contactCollection, 'makeAndPushModel', this.makeAndPushModel);
+			// this.listenTo(this.contactCollection, 'makeAndPushModel', this.makeAndPushModel);
+			window.kkk = Backbone.history;
 		},
 		routes: {
 			'': 'home',
@@ -44,9 +45,7 @@ define(['jquery', 'underscore', 'backbone', 'view/createView', 'view/homeView',
 			// createView.render();
 		},
 		create: function create() {
-			var contact = new Contact({});
 			this._currentView = new CreateView({
-				model: contact,
 				collection: this.contactCollection
 			});
 			this._currentView.render();
@@ -71,27 +70,25 @@ define(['jquery', 'underscore', 'backbone', 'view/createView', 'view/homeView',
 			// 	// }, 5000);
 			// }
 		},
-		makeAndPushModel: function (obj, collection) {
-			var contact = new Contact(obj.attrs, obj.options);
-			if (contact.isValid()) {
-				collection.push(contact);
-			} else {
-				// display messages
-				var messageView = new MessageView({
-					className: "bg-danger message", 
-					message: contact.validationError
-				});
-				messageView.render();
-			}
-		},
+		// makeAndPushModel: function (obj, collection) {
+		// 	var contact = new Contact(obj.attrs, obj.options);
+		// 	if (contact.isValid()) {
+		// 		collection.push(contact);
+		// 	} else {
+		// 		// display messages
+		// 		var messageView = new MessageView({
+		// 			className: "bg-danger message", 
+		// 			message: contact.validationError
+		// 		});
+		// 		messageView.render();
+		// 	}
+		// },
 		viewEdit: function () {
-			var contact = new Contact({});
 			this._currentView = new TableMessageAndCreateView({
-				model: contact,
 				collection: this.contactCollection
 			});
 			this._currentView.render();
-			window.myview = this._currentView;
+			// window.myview = this._currentView;
 		},
 		execute: function (callback, args, name) {
 			if (this._currentView) this._currentView.remove();
@@ -100,7 +97,9 @@ define(['jquery', 'underscore', 'backbone', 'view/createView', 'view/homeView',
 			$('nav.nav-item li>a[href=\"#'+name+'\"]').parent().addClass('active');
 		},
 		showManage: function () {
-			this.navigate('manage', {trigger: true});
+			if (Backbone.history.location.hash.search(/viewNedit/) === -1) {
+				this.navigate('manage', {trigger: true});
+			}
 		}
 	});
 	return Route;

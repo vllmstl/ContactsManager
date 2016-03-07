@@ -102,18 +102,18 @@ Just update that specific tag, dont redraw the whole component
 ////////////// BACKUP
 
 <tbody>
-    {{#each contact}}
-    <tr>
-      <td class='col-sm-1 id'>{{id}}</td>
-      <td>{{fname}}</td>
-      <td>{{lname}}</td>
-      <td>{{phone}}</td>
-      <td>{{email}}</td>
-      <td>{{url}}</td>
-      <td class='col-sm-2'>
-        <button type='button' class='btn btn-warning edit'><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</button>&nbsp;
-        <button type='button' class='btn btn-danger delete'><i class="fa fa-trash-o"></i>&nbsp;Delete</button>
-      </td>
-    </tr>
-    {{/each}}
-  </tbody>
+  {{#each contact}}
+  <tr>
+    <td class='col-sm-1 id'>{{id}}</td>
+    <td>{{fname}}</td>
+    <td>{{lname}}</td>
+    <td>{{phone}}</td>
+    <td>{{email}}</td>
+    <td>{{url}}</td>
+    <td class='col-sm-2'>
+      <button type='button' class='btn btn-warning edit'><i class="fa fa-pencil-square-o"></i>&nbsp;Edit</button>&nbsp;
+      <button type='button' class='btn btn-danger delete'><i class="fa fa-trash-o"></i>&nbsp;Delete</button>
+    </td>
+  </tr>
+  {{/each}}
+</tbody>

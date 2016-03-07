@@ -10,13 +10,11 @@ define(['jquery', 'underscore', 'backbone', 'view/messageView', 'view/createView
 			render: function () {
 				// var messageView = new MessageView();
 				var createView = new CreateView({
-					model: this.model,
 					collection: this.collection
 				}); // already uses messageView to display error messages
 				this._views.push(createView);
 				createView.render();
 				var tableView =  new TableView({
-					model: this.model,
 					collection: this.collection
 				});
 				this._views.push(tableView);

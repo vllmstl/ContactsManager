@@ -1,15 +1,16 @@
-define(['jquery','underscore', 'backbone', 'templateCompiled/form.handlebars'],
- function ($, _, Backbone, formTemp) {
+define(['jquery','underscore', 'backbone', 'templateCompiled/form.handlebars', 'model/contact', 'view/messageView'],
+ function ($, _, Backbone, formTemp, Contact, MessageView) {
 	var CreateView = Backbone.View.extend({
 		tagName: 'form',
 		id: 'form',
-		initialize: function () {
+		initialize: function (options) {
 			// this.setElement($('#form')[0]);
+			this.options = options;
 		},
 		template: formTemp,
 		render: function (){
 			// this.$el.empty(); handeled by router's execute function
-			$('main').append(this.$el.append(this.template(this.model.toJSON())));
+			$('main').append(this.$el.append(this.template(this.model?this.model.toJSON():{})));
 			return this;
 		},
 		events: {
@@ -27,7 +28,21 @@ define(['jquery','underscore', 'backbone', 'templateCompiled/form.handlebars'],
 				},
 				options: {validate: true}
 			};
-			this.collection.trigger('makeAndPushModel', obj, this.collection);
+			if (this.model) {
+				this.model.set(obj.attrs, obj.options);
+			} else {
+				this.model = new Contact(obj.attrs, obj.options);
+			}
+			if (this.model.isValid()) {
+				this.collection.push(this.model);
+			} else {
+				// display messages
+				var messageView = new MessageView({
+					className: "bg-danger message", 
+					message: this.model.validationError
+				});
+				messageView.render();
+			}
 
 			// this.model.set({
 			// 	fname: $("#fname").val(),
@@ -46,7 +61,6 @@ define(['jquery','underscore', 'backbone', 'templateCompiled/form.handlebars'],
 			// 	});
 			// 	messageView.render();
 			// }
-
 
 			// var $messages = $("#messages");	
 			// var contact = new Contact({

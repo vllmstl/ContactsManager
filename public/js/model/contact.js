@@ -2,18 +2,18 @@ define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
 	'use strict';
 	var Contact = Backbone.Model.extend({
 		defaults: {
-			fname: undefined,
-			lname: undefined,
-			phone: undefined,
-			email: undefined,
-			url: undefined,
-			company: undefined,
-			address: undefined,
-			city: undefined,
-			state: undefined,
-			zip: undefined,
-			dob: undefined,
-			photo: undefined
+			fname: null,
+			lname: null,
+			phone: null,
+			email: null,
+			url: null,
+			company: null,
+			address: null,
+			city: null,
+			state: null,
+			zip: null,
+			dob: null,
+			photo: null
 		},
 		validate: function (attrs, options) {
 			if (attrs && ( (attrs.fname && attrs.fname.trim()) || (attrs.lname && attrs.lname.trim()) || (attrs.company && attrs.company.trim()))) {

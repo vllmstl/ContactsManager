@@ -12,16 +12,27 @@ define(['jquery', 'underscore', 'backbone', 'templateCompiled/message.handlebars
  		},
  		template: messageTemp,
  		render: function () {
- 			var $msgHtml = $(this.template(this.options));
- 			$('main').append(this.$el.append($msgHtml));
+ 			this.$msgHtml = $(this.template(this.options));
+ 			$('main').append(this.$el.append(this.$msgHtml));
  			var that = this;
- 			setTimeout(function () {
-				$msgHtml.animate({
-				 opacity: '0'
-			    }, function () {
-			    	that.remove();
-			    });
-			}, 5000);
+ 			this.timer = setTimeout(function () {
+ 				that.removeDivAnim(that);
+ 			}, 5000);
+ 		},
+ 		events: {
+ 			'click button.close': 'destroyView'
+ 		},
+ 		destroyView: function (e) {
+ 			e.preventDefault();
+ 			clearTimeout(this.timer);
+ 			this.removeDivAnim(this);
+ 		},
+ 		removeDivAnim: function (that) {
+			that.$msgHtml.animate({
+			 opacity: '0'
+		    }, function () {
+		    	that.remove();
+		    });
  		}
  	});
  	return MessageView;
